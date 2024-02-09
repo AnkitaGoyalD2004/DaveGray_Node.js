@@ -17,3 +17,5 @@ const logEvents = async (message) => {
     console.log(err);
   }
 };
+
+module.exports = logEvents;
