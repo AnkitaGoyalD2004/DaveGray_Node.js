@@ -12,9 +12,5 @@
     "dev": "nodemon server"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "date-fns": "^3.3.1",
-    "uuid": "^9.0.1"
-  }
+  "license": "ISC"
 }
