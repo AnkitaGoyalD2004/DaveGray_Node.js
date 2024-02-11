@@ -74,7 +74,9 @@ const server = http.createServer((req, res) => {
   } else {
     //404
     //301 redirect
-    console.log(path.parse(filePath));
+    switch(path.parse(filePath).base){
+      case ''
+    };
   }
 });
 
