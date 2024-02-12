@@ -74,9 +74,10 @@ const server = http.createServer((req, res) => {
   } else {
     //404
     //301 redirect
-    switch(path.parse(filePath).base){
-      case ''
-    };
+    switch (path.parse(filePath).base) {
+      case "old-page.html":
+        res.write(301, { Location: "/new-page.html" });
+    }
   }
 });
 
