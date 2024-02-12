@@ -10,7 +10,17 @@ class Emitter extends EventEmitter {}
 const myEmitter = new Emitter();
 
 const PORT = process.env.PORT || 3500;
-
+const serveFile = async (filePath, contentType, response) => {
+  try {
+    const data = await fsPromises.readFile(filePath, "utf-8");
+    response.writeHead(200, { "Content-Type": contentType });
+    response.end(data);
+  } catch (err) {
+    console.log(err);
+    response, (statusCode = 500);
+    response.end();
+  }
+};
 const server = http.createServer((req, res) => {
   console.log(req.url, req.method);
 
@@ -71,12 +81,21 @@ const server = http.createServer((req, res) => {
   const fileExists = fs.existsSync(filePath);
   if (fileExists) {
     // serve the file
+    serveFile(filePath, contentType, res);
   } else {
     //404
     //301 redirect
     switch (path.parse(filePath).base) {
       case "old-page.html":
-        res.write(301, { Location: "/new-page.html" });
+        res.writeHead(301, { Location: "/new-page.html" });
+        res.end();
+        break;
+      case "www-page.html":
+        res.writeHead(301, { Location: "/new-page.html" });
+        res.end();
+        break;
+      default:
+        serveFile(path.join(__dirname, "views ", "404.html"), "text/html", res);
     }
   }
 });
