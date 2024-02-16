@@ -17,8 +17,8 @@ const serveFile = async (filePath, contentType, response) => {
     response.end(data);
   } catch (err) {
     console.log(err);
-    response, (statusCode = 500);
-    response.end();
+    response.statusCode = 500;
+    response.end(data);
   }
 };
 const server = http.createServer((req, res) => {
@@ -101,9 +101,3 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => console.log(`server running on port ${PORT}`));
-// // add listner or the log event
-// myEmitter.on("logs", (msg) => logEvents(msg));
-// setTimeout(() => {
-//   //Emit events
-//   myEmitter.emit("logs", "log event emitted");
-// }, 5000);
