@@ -9,25 +9,22 @@ const myEmitter = new EventEmitter();
 //when we deploy
 const port = process.env.PORT || 3500;
 myEmitter.on("log", (msg, fileName) => logEvents(msg, fileName));
-const serveFile = async (filePath, contentType, resposnse) => {
+const serveFile = async (filePath, contentType, response) => {
   try {
     const rawData = await fsPromises.readFile(
       filePath,
       !contentType.includes("image") ? "utf-8" : ""
     );
     const data =
-      contentType == "application/json" ? JSON.parse(rawData) : rawData;
-    resposnse.writeHead(filePath.includes("404.html") ? 400 : 200, {
-      "Content-Type": contentType,
-    });
-    resposnse.end(
-      contentType == "application/json" ? JSON.stringify(data) : data
+      contentType === "application/json" ? JSON.parse(rawData) : rawData;
+    response.writeHead(200, { "content-Type": contentType });
+    response.end(
+      contentType === "application/json" ? JSON.stringify(data) : data
     );
   } catch (err) {
-    myEmitter.emit("log", `${err.name}\t${err.message}`, "errLog.txt");
-    //because it is a server error
-    resposnse.statusCode = 500;
-    resposnse.end();
+    console.log(err);
+    response.statusCode = 500;
+    response.end();
   }
 };
 
@@ -46,7 +43,7 @@ const server = http.createServer((req, res) => {
       contentType = "application/json";
       break;
     case ".jpg":
-      contentType = "image/jpg";
+      contentType = "image/jpeg";
       break;
     case ".png":
       contentType = "image/png";
