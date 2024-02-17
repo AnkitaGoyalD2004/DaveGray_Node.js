@@ -2,10 +2,16 @@ const http = require("http");
 const path = require("path");
 const fs = require("fs");
 const fsPromises = require("fs").promises;
+
 const logEvents = require("./logEvents");
 const EventEmitter = require("events");
+class Emitter extends EventEmitter {}
+
 const myEmitter = new EventEmitter();
 
+myEmitter.on("log", (msg, fileName) => {
+  logEvents(msg, fileName);
+});
 //when we deploy
 const port = process.env.PORT || 3500;
 myEmitter.on("log", (msg, fileName) => logEvents(msg, fileName));
@@ -17,21 +23,28 @@ const serveFile = async (filePath, contentType, response) => {
     );
     const data =
       contentType === "application/json" ? JSON.parse(rawData) : rawData;
-    response.writeHead(200, { "content-Type": contentType });
+    response.writeHead(filePath.includes("404.html") ? 400 : 200, {
+      "content-Type": contentType,
+    });
     response.end(
       contentType === "application/json" ? JSON.stringify(data) : data
     );
   } catch (err) {
     console.log(err);
+    myEmitter.emit("log", `${err.name}:${req.message}`, "errLog.txt");
     response.statusCode = 500;
     response.end();
   }
 };
 
 const server = http.createServer((req, res) => {
+  console.log(req.url, req.method);
   myEmitter.emit("log", `${req.url}\t${req.method}`, "reqLog.txt");
+
   const extention = path.extname(req.url);
+
   let contentType = "text/html";
+
   switch (extention) {
     case ".css":
       contentType = "text/css";
@@ -42,7 +55,7 @@ const server = http.createServer((req, res) => {
     case ".json":
       contentType = "application/json";
       break;
-    case ".jpg":
+    case ".jpeg":
       contentType = "image/jpeg";
       break;
     case ".png":
