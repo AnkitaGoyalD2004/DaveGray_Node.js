@@ -47,4 +47,4 @@ app.get("/*", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
 });
 
-app.listen(PORT, () => console.log(`server running on port ${PORT}`));
+app.listen(3500, () => console.log(`server running on port ${PORT}`));
