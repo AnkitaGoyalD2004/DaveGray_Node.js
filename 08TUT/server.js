@@ -36,12 +36,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //middleware to serve the static files
-app.use(express.static(path.join(__dirname, "/public")));
+app.use("/", express.static(path.join(__dirname, "/public")));
+app.use("/subdir", express.static(path.join(__dirname, "/public")));
 
-app.get("^/$|/index(.html)?", (req, res) => {
-  //res.sendFile('./views/index.html',{root:__dirname});
-  res.sendFile(path.join(__dirname, "views", "index.html"));
-});
+app.use("/", require("./routes/root"));
+app.use("/subdir", require("./routes/subdir"));
 
 app.get("/new-page(.html)?", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "new-page.html"));

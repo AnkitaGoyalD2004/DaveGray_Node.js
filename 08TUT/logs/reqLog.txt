@@ -1,0 +1,10 @@
+20240221	16:13:43	e03faa2b-4919-47b3-ad87-935b5345991e	GET	undefined	/
+20240221	16:13:44	a43bbfa8-9094-44a4-be7c-89bf330826e9	GET	undefined	/css/style.css
+20240221	16:14:30	b84c569d-6904-403a-af6f-4c7d566e3c46	GET	undefined	/
+20240221	16:14:30	665f3339-5ef5-49ec-aa7a-e13989da33a7	GET	undefined	/css/style.css
+20240221	16:16:21	a1c7fa52-1416-4663-9fa5-ce01ca762a40	GET	undefined	/subdir
+20240221	16:17:44	83c33427-6eb6-4835-974b-553f2f09cb3e	GET	undefined	/subdirdar
+20240221	16:17:45	33c75a1c-63b1-4179-b66a-756a0856005d	GET	undefined	/css/style.css
+20240221	16:17:51	08408d73-1ec1-4a66-b8dc-3c261c002aeb	GET	undefined	/subdir
+20240221	16:55:43	10d7b1a3-ddfd-4167-980b-d74ec3c5c0a4	GET	undefined	/subdir
+20240221	16:55:44	27e69cf5-fed4-4a04-9b12-89c6375de40d	GET	undefined	/subdir/
