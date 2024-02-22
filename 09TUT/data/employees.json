@@ -8,5 +8,10 @@
     "id": 2,
     "firstname": "Dishu",
     "lastname": "Goyal"
+  },
+  {
+    "id": 3,
+    "firstname": "Abhita",
+    "lastname": "Goyal"
   }
 ]
