@@ -1,0 +1,4 @@
+20240222	09:27:38	06c49566-4f2a-49bf-a150-b00d4de474a6	GET	undefined	/
+20240222	09:27:38	68096042-dc7c-415f-8332-8ce359754a08	GET	undefined	/css/style.css
+20240222	09:43:22	ceefa65b-31ea-4c9f-af8a-76b4578fdff5	GET	undefined	/
+20240222	09:43:22	acba14b6-1dc2-4108-abc5-bbf0f814e9f8	GET	undefined	/css/style.css
