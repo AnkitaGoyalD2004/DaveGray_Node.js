@@ -1,5 +1,5 @@
 const data = {
-  employees: require("../models/employees.json"),
+  employees: require("../data/employees.json"),
   setEmployees: function (data) {
     this.employees = data;
   },
@@ -85,4 +85,3 @@ module.exports = {
   createNewEmployee,
   getEmployee,
 };
-  
