@@ -19,10 +19,18 @@ const handleNewUser = async (req, res) => {
   if (duplicate) return res.sendStatus(409);
   try {
     // encrypt the pass
-    const hashedPwd = await bcrypt.hash(pwd , 10);
+    const hashedPwd = await bcrypt.hash(pwd, 10);
     //store the new user
-    const newUser = {"username":user , "pass":}
+    const newUser = { username: user, password: hashedPwd };
+    userDB.setUsers([...usersDB.users, newUser]);
+    await fsPromises.writeFile(
+      path.join(__dirname, "..", "dara", "users.JSON"),
+      JSON.stringify(userDB.users)
+    );
+    console.log(usersDB.users);
+    res.status(201).json({ success: `New user ${user} created` });
   } catch (err) {
     res.status(500).json({ message: err, message });
   }
 };
+module.exports = { handleNewUser };
