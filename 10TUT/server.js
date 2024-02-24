@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3500;
 //Cross Origin Resource Sharing
 app.use(cors(corsOptions));
 
-//custom middleware logger(will be used everwhere as a middleware)
+//custom middleware logger(wil l be used everwhere as a middleware)
 app.use(logger);
 
 //to parse form data in the url
@@ -23,6 +23,8 @@ app.use(express.json());
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use("/", require("./routes/root"));
+app.use("/register", require("./routes/register"));
+app.use("/auth", require("./routes/api/auth"));
 app.use("/employees", require("./routes/api/employees"));
 
 app.all("*", (req, res) => {
