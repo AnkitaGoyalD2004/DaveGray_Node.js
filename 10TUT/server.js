@@ -12,6 +12,7 @@ app.use(cors(corsOptions));
 
 //custom middleware logger(wil l be used everwhere as a middleware)
 app.use(logger);
+//
 
 //to parse form data in the url
 app.use(express.urlencoded({ extended: false }));
