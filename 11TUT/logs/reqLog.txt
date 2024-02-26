@@ -64,3 +64,8 @@
 20240226	09:17:56	b17a378a-0492-47fc-a4f2-11cb1bf29756	GET	undefined	/auth
 20240226	09:17:56	8fe004b6-3c41-443f-ba8b-b462a2b7b4a0	GET	undefined	/css/style.css
 20240226	09:18:03	aff45833-51a6-49d1-9d1e-dcd9e216fa46	POST	undefined	/auth
+20240226	16:11:03	dda0013e-c6e8-48af-8bcf-c75c99277e76	POST	undefined	/auth
+20240226	16:13:29	d930311f-a959-450d-9cca-24ff7c25fc8d	POST	undefined	/auth
+20240226	16:13:47	2f0b8c97-2fbb-414e-9e2d-a9db475ee09d	GET	undefined	/auth
+20240226	16:13:48	1a6eeac2-160d-467f-af56-cb4100061a77	GET	undefined	/css/style.css
+20240226	16:14:56	5a5893ea-f703-445b-9724-d88b932f2e5e	POST	undefined	/auth
