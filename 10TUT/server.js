@@ -5,7 +5,7 @@ const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
-const PORT = process.env.PORT || 3500;
+const PORT = 3500;
 
 //Cross Origin Resource Sharing
 app.use(cors(corsOptions));

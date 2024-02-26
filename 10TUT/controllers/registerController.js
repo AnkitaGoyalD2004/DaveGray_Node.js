@@ -1,4 +1,3 @@
-//emulating a db
 const usersDb = {
   users: require("../data/users.json"),
   setUsers: function (data) {
@@ -31,7 +30,7 @@ const handleNewUser = async (req, res) => {
     newUser = { username: user, password: hash };
     usersDb.setUsers([...usersDb.users, newUser]);
     await fsPromises.writeFile(
-      path.join(__dirname, "..", "models", "users.json"),
+      path.join(__dirname, "..", "data", "users.json"),
       JSON.stringify(usersDb.users)
     );
     return res.status(201).json({ message: `New user created with ${user}` });
