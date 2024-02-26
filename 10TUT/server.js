@@ -5,7 +5,7 @@ const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
-const PORT = 3500;
+const PORT = process.env.PORT || 3500;
 
 //Cross Origin Resource Sharing
 app.use(cors(corsOptions));
@@ -25,7 +25,7 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use("/", require("./routes/root"));
 app.use("/register", require("./routes/register"));
-app.use("/auth", require("./routes/api/auth"));
+app.use("/auth", require("./routes/auth"));
 app.use("/employees", require("./routes/api/employees"));
 
 app.all("*", (req, res) => {
