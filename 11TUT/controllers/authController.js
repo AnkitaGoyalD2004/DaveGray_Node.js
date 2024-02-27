@@ -3,7 +3,6 @@ const usersDb = {
   users: require("../data/users.json"),
   setUsers: function (data) {
     this.users = data;
-    return;
   },
 };
 
@@ -11,11 +10,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const path = require("path");
-//To emulate a db
 const fsPromises = require("fs").promises;
 
 const handleLogin = async (req, res) => {
-  console.log("Hello from login");
   const { user, pwd } = req.body;
   if (!user || !pwd) {
     return res
@@ -32,7 +29,6 @@ const handleLogin = async (req, res) => {
 
   if (match) {
     //create a jwt
-    //we will not use the password as the payload , will hurt the security
     const accessToken = jwt.sign(
       { username: foundUser.username },
       process.env.ACCESS_TOKEN_SECRET,
