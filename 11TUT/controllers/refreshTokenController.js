@@ -8,51 +8,29 @@ const usersDb = {
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-
-const handleRefreshToken =  (req, res) => {
-  const cookies = req.cookies
+const handleRefreshToken = (req, res) => {
+  const cookies = req.cookies;
   if (!cookies?.jwt) {
-    return res
-      .status(401);
+    return res.status(401);
   }
+  console.log(cookies.jwt);
+  const refreshToken = cookies.jwt;
   //find the user
   const foundUser = usersDb.users.find((person) => {
-    return person.username == user;
+    return person.refreshToken == refreshToken;
   });
-  if (!foundUser) return res.status(401).json({ message: "User not found" });
-  //evaluate password
-  const match = await bcrypt.compare(pwd, foundUser.password);
-
-  if (match) {
-    //create a jwt
+  if (!foundUser) return res.status(401); //Forbidden
+  //evaluate jwt
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
+    if (err || foundUser.username !== decoded.username)
+      return res.sendStatus(403);
     const accessToken = jwt.sign(
-      { username: foundUser.username },
+      { username: decoded.username },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "50s" }
+      { expiresIn: "30s" }
     );
-    const refreshToken = jwt.sign(
-      { username: foundUser.username },
-      process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "1d" }
-    );
-    //saving refresh token with the current user
-    const otherUsers = usersDb.users.filter((person) => {
-      return person.username != foundUser.username;
-    });
-    const currentUser = { ...foundUser, refreshToken };
-    usersDb.setUsers([...otherUsers, currentUser]);
-    await fsPromises.writeFile(
-      path.join(__dirname, "..", "models", "users.json"),
-      JSON.stringify(usersDb.users)
-    );
-    res.cookie("jwt", refreshToken, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
-    });
-    return res.json({ accessToken });
-  } else {
-    return res.sendStatus(401);
-  }
+    res.json({ accessToken });
+  });
 };
 
-module.exports = { handleLogin };
+module.exports = { handleRefreshToken };
