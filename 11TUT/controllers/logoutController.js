@@ -5,7 +5,8 @@ const usersDb = {
     this.users = data;
   },
 };
-
+const fsPromises = require("fs").promises;
+const path = require("path");
 const handleLogout = (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.jwt) {
