@@ -7,7 +7,10 @@ const usersDb = {
 };
 const fsPromises = require("fs").promises;
 const path = require("path");
+
 const handleLogout = (req, res) => {
+  // on client , delete the access token
+
   const cookies = req.cookies;
   if (!cookies?.jwt) {
     return res.status(401);
