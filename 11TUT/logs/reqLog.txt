@@ -131,3 +131,11 @@
 20240228	06:12:59	05a00b71-f3e1-4f57-8d5c-78ea514f9912	GET	undefined	/
 20240228	06:12:59	4508123c-1cbf-4de1-923c-7d923715d899	GET	undefined	/css/style.css
 20240228	06:13:00	c5b72557-8980-40d9-a0cb-2f9d100ea724	GET	undefined	/favicon.ico
+20240229	06:16:14	ca33f8ad-9392-406c-83d8-d005c794e2fd	POST	undefined	/auth
+20240229	06:16:34	0f8ce8e2-b9ad-4e14-ae8f-67dff456f9f8	GET	undefined	/
+20240229	06:16:34	abf6b0d2-0b6c-41a9-893f-f198db55a351	GET	undefined	/css/style.css
+20240229	06:16:34	24f31461-3cb8-4445-b3ce-35b816b15a3c	GET	undefined	/favicon.ico
+20240229	06:16:38	67667e19-5704-4e4e-8b34-4e27fd5c0faf	GET	undefined	/logout
+20240229	06:16:45	27ad4ab4-799f-4671-a458-41ea0f2d0da7	GET	undefined	/logout
+20240229	06:17:33	b386dcb2-7a07-42ab-9566-4f7ca6339a1e	GET	undefined	/logout
+20240229	06:18:15	156d25d8-b422-4ff9-9fec-2bd025370ad7	GET	undefined	/refresh
