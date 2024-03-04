@@ -1,5 +1,6 @@
+//emulating a db
 const usersDb = {
-  users: require("../data/users.json"),
+  users: require("../models/users.json"),
   setUsers: function (data) {
     this.users = data;
   },
@@ -22,19 +23,25 @@ const handleNewUser = async (req, res) => {
   //conflict
   if (duplicate) return res.sendStatus(409);
 
-  //generete the newUser
-  bcrypt.hash(pwd, 10, async (err, hash) => {
-    if (err) {
-      return res.status(500).json({ message: err.message });
-    }
-    newUser = { username: user, password: hash };
+  try {
+    //encrpyt the password
+    const hashedPwd = await bcrypt.hash(pwd, 10);
+    const newUser = {
+      username: user,
+      roles: { User: 2001 },
+      password: hashedPwd,
+    };
     usersDb.setUsers([...usersDb.users, newUser]);
     await fsPromises.writeFile(
-      path.join(__dirname, "..", "data", "users.json"),
+      path.join(__dirname, "..", "models", "users.json"),
       JSON.stringify(usersDb.users)
     );
-    return res.status(201).json({ message: `New user created with ${user}` });
-  });
+    console.log(newUser);
+    console.log(usersDb.users);
+    return res.status(201).json({ message: `new user created ${user}` });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 module.exports = { handleNewUser };
