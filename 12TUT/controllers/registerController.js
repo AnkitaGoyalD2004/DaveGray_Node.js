@@ -1,6 +1,6 @@
 //emulating a db
 const usersDb = {
-  users: require("../models/users.json"),
+  users: require("../data/users.json"),
   setUsers: function (data) {
     this.users = data;
   },
