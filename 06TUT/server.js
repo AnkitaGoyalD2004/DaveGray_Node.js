@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 3600;
 
 app.get("^/$|/index(.html)?", (req, res) => {
   // res.sendFile("./views/index.html", { root: __dirname });
@@ -47,4 +47,4 @@ app.get("/*", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
 });
 
-app.listen(3500, () => console.log(`server running on port ${PORT}`));
+app.listen(3600, () => console.log(`server running on port ${PORT}`));

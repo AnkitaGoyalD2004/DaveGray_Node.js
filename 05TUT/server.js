@@ -13,7 +13,7 @@ myEmitter.on("log", (msg, fileName) => {
   logEvents(msg, fileName);
 });
 //when we deploy
-const port = process.env.PORT || 3500;
+const port = process.env.PORT || 3600;
 myEmitter.on("log", (msg, fileName) => logEvents(msg, fileName));
 const serveFile = async (filePath, contentType, response) => {
   try {
