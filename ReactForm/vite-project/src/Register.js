@@ -40,7 +40,48 @@ const Register = () => {
     setValidName(result);
   }, [user]);
 
-  return <div></div>;
+  //this useffect is for password
+  useEffect(() => {
+    const result = PWD_REGEX.test(pwd);
+    console.log(result);
+    console.log(pwd);
+    setValidName(result);
+    const match = pwd === matchPwd;
+    setValidMatch(match);
+  }, [pwd, matchPwd]);
+
+  //this useeffect is for error message
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, pwd, matchPwd]);
+
+  return (
+    <section>
+      <p
+        ref={errRef}
+        className={errMsg ? "errmsg" : "offScreen"}
+        aria-live="assertive"
+      >
+        {errMsg}
+      </p>
+      <h1>Register</h1>
+      <form>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          ref={useRef}
+          autoComplete="off"
+          onChange={(e) => setUser(e.target.value)}
+          required
+          aria-invalid={validName ? "false" : "true"}
+          aria-describedby="uidnote"
+          onFocus={() => setUserFocus(true)}
+          onBlur={() => setUserFocus(false)}
+        />
+      </form>
+    </section>
+  );
 };
 
 export default Register;
