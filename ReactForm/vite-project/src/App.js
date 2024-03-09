@@ -1,4 +1,4 @@
-import Register from "./src/Register";
+import Register from "./Register";
 
 function App() {
   return (
