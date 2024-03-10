@@ -17,6 +17,10 @@ const Login = () => {
     setErrMsg("");
   }, [user, pwd]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
   return (
     <section>
       <p
@@ -26,7 +30,8 @@ const Login = () => {
       >
         {errMsg}
       </p>
-      <form>
+      <h1>Sign In</h1>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -50,6 +55,7 @@ const Login = () => {
       <p>
         Need an Account? <br />
         <span className="line">
+          {/* put router link here*/}
           <a href="#">Sign Up</a>
         </span>
       </p>
