@@ -7,9 +7,6 @@ const PersistLogin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const refresh = useRefreshToken();
   const { auth, persist } = useAuth();
-
-  //check if there is persist login or not, which will further tell to make the api
-  //call or not
   useEffect(() => {
     if (persist) console.log("persist useEffect");
     const verifyRefreshToken = async () => {
@@ -36,6 +33,3 @@ const PersistLogin = () => {
 
 export default PersistLogin;
 
-//logic behind -> the persist login component will send the refreshToken request through the
-//useRefrehToken component, since the refresh token will persist in the browser, we will set the
-//new accessToken in the auth state.
