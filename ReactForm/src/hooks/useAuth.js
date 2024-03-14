@@ -1,15 +1,13 @@
-import { useContext,useDebugValue } from "react";
+import { useContext, useDebugValue } from "react";
 
-import AuthContext from "../../../ReactForm/src/Context/AuthProvider";
+// import AuthContext from "../../../ReactForm/src/Context/AuthProvider";
 
+import AuthContext from "../Context/AuthProvider";
 
-const useAuth = ()=>{
-    const {auth} = useContext(AuthContext);
-    //useDebugValue is is only useful when we want to diplay some information in the react dev tools
-    useDebugValue(auth?.user?'Logged In':'Logged Out');
-    return useContext(AuthContext);
-}
-
+const useAuth = () => {
+  const { auth } = useContext(AuthContext);
+  useDebugValue(auth?.user ? "Logged In" : "Logged Out");
+  return useContext(AuthContext);
+};
 
 export default useAuth;
-
